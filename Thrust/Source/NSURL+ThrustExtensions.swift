@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// Allows for the creation of NSURLs from String literals.
 extension NSURL: StringLiteralConvertible {
     public class func convertFromExtendedGraphemeClusterLiteral(value: String) -> Self {
         return self(string: value)

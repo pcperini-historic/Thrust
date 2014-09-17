@@ -10,46 +10,53 @@ import Foundation
 
 // MARK: - Extensions
 extension Dictionary {
+    /// Returns a representation of the dictionary using percent escapes necessary to convert the key-value pairs into a legal URL string.
     var urlSerializedString: String {
         get {
-            var serializedString: String? = nil
+            var serializedString: String = ""
             for (key, value) in self {
                 let encodedKey = "\(key)".stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)
                 let encodedValue = "\(value)".stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)
                 
-                if serializedString == nil {
+                if !serializedString.hasContent {
                     serializedString = "\(encodedKey)=\(encodedValue)"
                 } else {
-                    serializedString! += "&\(encodedKey)=\(encodedValue)"
+                    serializedString += "&\(encodedKey)=\(encodedValue)"
                 }
             }
             
-            return serializedString!
+            return serializedString
         }
     }
 }
 
 class HTTP {
     // MARK: - Responses
-    struct Response: Printable {
+    struct Response: DebugPrintable {
         // MARK: - Properties
         // MARK: Request Information
+        /// The original request URL, with query parameters.
         var requestURL: NSURL
+        /// The original request body.
         var requestBody: NSData
         
         // MARK: Response Information
+        /// The response's HTTP status code.
         var status: Int?
+        /// The response's binary data.
         var data: NSData?
         
+        /// The response's data as a UTF8-string.
         var string: String? {
             return NSString(data: self.data!, encoding: NSUTF8StringEncoding) as String
         }
         
+        /// The responses's data as a JSON container.
         var object: JSONContainer? {
             return self.string?.jsonObject
         }
         
-        var description: String {
+        var debugDescription: String {
             return "\(self.requestURL) - \(self.status ?? 0)\n\t\(self.string ?? String())"
         }
     }
@@ -79,7 +86,7 @@ class HTTP {
         func syncRequest() -> Response {
             // Setup variables
             var urlString: String = self.url.absoluteString!
-            let requestBody: NSData = self.payload?.jsonString.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true) ?? NSData()
+            let requestBody: NSData = self.payload?.jsonString?.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true) ?? NSData()
             
             // Add parameters
             if params != nil {
@@ -199,6 +206,16 @@ class HTTP {
     }
     
     // MARK: - Requests
+    /**
+    
+    Executes an HTTP GET request on the given URL.
+    
+    :param: url The URL to request.
+    :param: headers HTTP headers.
+    :param: params URL parameters, which become the request's query string.
+    :param: block A reponse handler that takes a single HTTP.Response argument.
+    
+    */
     class func get(url: NSURL, headers: [String: String]? = nil, params: [String: String]? = nil, block: ((Response) -> Void)?) {
         let request: Request = Request(url: url,
             method: Method.GET,
@@ -209,6 +226,17 @@ class HTTP {
         request.asyncRequest()
     }
     
+    /**
+    
+    Executes an HTTP GET request on the given URL.
+    
+    :param: url The URL to request.
+    :param: headers HTTP headers.
+    :param: params URL parameters, which become the request's query string.
+    
+    :returns: The HTTP.Response object representing the request's response.
+    
+    */
     class func get(url: NSURL, headers: [String: String]? = nil, params: [String: String]? = nil) -> Response {
         let request: Request = Request(url: url,
             method: Method.GET,
@@ -219,6 +247,17 @@ class HTTP {
         return request.syncRequest()
     }
     
+    /**
+    
+    Executes an HTTP PUT request on the given URL.
+    
+    :param: url The URL to request.
+    :param: headers HTTP headers.
+    :param: params URL parameters, which become the request's query string.
+    :param: payload A JSON dictionary or array to be used as the JSON body of the request.
+    :param: block A reponse handler that takes a single HTTP.Response argument.
+    
+    */
     class func put(url: NSURL, headers: [String: String]? = nil, params: [String: String]? = nil, payload: JSONContainer?, block: ((Response) -> Void)?) {
         let request: Request = Request(url: url,
             method: Method.PUT,
@@ -229,6 +268,18 @@ class HTTP {
         request.asyncRequest()
     }
     
+    /**
+    
+    Executes an HTTP PUT request on the given URL.
+    
+    :param: url The URL to request.
+    :param: headers HTTP headers.
+    :param: params URL parameters, which become the request's query string.
+    :param: payload A JSON dictionary or array to be used as the JSON body of the request.
+    
+    :returns: The HTTP.Response object representing the request's response.
+    
+    */
     class func put(url: NSURL, headers: [String: String]? = nil, params: [String: String]? = nil, payload: JSONContainer?) -> Response {
         let request: Request = Request(url: url,
             method: Method.PUT,
@@ -239,6 +290,17 @@ class HTTP {
         return request.syncRequest()
     }
     
+    /**
+    
+    Executes an HTTP POST request on the given URL.
+    
+    :param: url The URL to request.
+    :param: headers HTTP headers.
+    :param: params URL parameters, which become the request's query string.
+    :param: payload A JSON dictionary or array to be used as the JSON body of the request.
+    :param: block A reponse handler that takes a single HTTP.Response argument.
+    
+    */
     class func post(url: NSURL, headers: [String: String]? = nil, params: [String: String]? = nil, payload: JSONContainer?, block: ((Response) -> Void)?) {
         let request: Request = Request(url: url,
             method: Method.POST,
@@ -249,6 +311,18 @@ class HTTP {
         request.asyncRequest()
     }
     
+    /**
+    
+    Executes an HTTP POST request on the given URL.
+    
+    :param: url The URL to request.
+    :param: headers HTTP headers.
+    :param: params URL parameters, which become the request's query string.
+    :param: payload A JSON dictionary or array to be used as the JSON body of the request.
+    
+    :returns: The HTTP.Response object representing the request's response.
+    
+    */
     class func post(url: NSURL, headers: [String: String]? = nil, params: [String: String]? = nil, payload: JSONContainer?) -> Response {
         let request: Request = Request(url: url,
             method: Method.POST,
@@ -259,6 +333,16 @@ class HTTP {
         return request.syncRequest()
     }
     
+    /**
+    
+    Executes an HTTP DELETE request on the given URL.
+    
+    :param: url The URL to request.
+    :param: headers HTTP headers.
+    :param: params URL parameters, which become the request's query string.
+    :param: block A reponse handler that takes a single HTTP.Response argument.
+    
+    */
     class func delete(url: NSURL, headers: [String: String]? = nil, params: [String: String]? = nil, block: ((Response) -> Void)?) {
         let request: Request = Request(url: url,
             method: Method.GET,
@@ -269,6 +353,17 @@ class HTTP {
         request.asyncRequest()
     }
     
+    /**
+    
+    Executes an HTTP DELETE request on the given URL.
+    
+    :param: url The URL to request.
+    :param: headers HTTP headers.
+    :param: params URL parameters, which become the request's query string.
+    
+    :returns: The HTTP.Response object representing the request's response.
+    
+    */
     class func delete(url: NSURL, headers: [String: String]? = nil, params: [String: String]? = nil) -> Response {
         let request: Request = Request(url: url,
             method: Method.GET,

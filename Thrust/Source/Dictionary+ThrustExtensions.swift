@@ -9,21 +9,26 @@
 import Foundation
 
 // MARK: - Operators
-func +=<Key, Value>(inout lhs: Dictionary<Key, Value>, rhs: Dictionary<Key, Value>) {
+/// Adds the key-value relationships from the right-hand dictionary to the left-hand dictionary.
+func +=<Key, Value>(inout lhs: [Key: Value], rhs: [Key: Value]) {
     for key: Key in rhs.keys {
         lhs[key] = rhs[key]
     }
 }
 
-func -=<Key, Value>(inout lhs: Dictionary<Key, Value>, rhs: Dictionary<Key, Value>) {
-    for key: Key in rhs.keys {
+/// Removes the keys found in the right-hand array from the left-hand dictionary.
+func -=<Key, Value>(inout lhs: [Key: Value], rhs: [Key]) {
+    for key: Key in rhs {
         lhs.removeValueForKey(key)
     }
 }
 
 extension Dictionary {
-    // MARK: Accessors
-    var isEmpty: Bool {
-        return (self.count <= 0)
+    /// Initializes the dictionary from a set of 2-tuple key/values.
+    init(_ values: [(Key, Value)]) {
+        self = [:]
+        for (key, value) in values {
+            self[key] = value
+        }
     }
 }

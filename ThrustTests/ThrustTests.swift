@@ -55,7 +55,7 @@ class ThrustDictionaryTests: XCTestCase {
     
     func testDictionarySubtraction() {
         var x = ["a": "b", "c": "d"]
-        var y = ["a": "b"]
+        var y = ["a"]
         
         x -= y
         XCTAssertEqual(x, ["c": "d"], "")
@@ -68,17 +68,51 @@ class ThrustDictionaryTests: XCTestCase {
         XCTAssertTrue(x.isEmpty, "")
         XCTAssertFalse(y.isEmpty, "")
     }
+}
+
+class ThrustRangeTests: XCTestCase {
+    func testRangeEmptiness() {
+        var r = 0 ..< 10
+        XCTAssertFalse(r.isEmpty, "")
+    }
     
+    func testRangeAll() {
+        var r = 0 ..< 5
+        XCTAssertEqual(r.all, [0, 1, 2, 3, 4], "")
+    }
+    
+    func testRangeContains() {
+        var r = 0 ..< 5
+        XCTAssertTrue(r.contains(3), "")
+        XCTAssertFalse(r.contains(5), "")
+    }
+    
+    func testRangeIntersections() {
+        var r1 = 0 ..< 5
+        var r2 = 3 ..< 10
+        
+        XCTAssertEqual(r1.intersection(r2), 3 ..< 5, "")
+        XCTAssertTrue(r1.intersects(r2), "")
+    }
+    
+    func testRangeUnion() {
+        var r1 = 0 ..< 2
+        var r2 = 2 ..< 5
+        
+        XCTAssertEqual(r1.union(r2), 0 ..< 5, "")
+    }
 }
 
 class JSONTests: XCTestCase {
     func testContainers() {
         // JSONArray <-> array
-        XCTAssertEqual(JSONArray().jsonString, "[]", "")
+        var array: JSONArray = []
+        XCTAssertEqual(array.jsonString!, "[]", "")
         XCTAssertFalse("[]".jsonObject == nil, "")
         
         // JSONDictionary <-> object
-        XCTAssertEqual(JSONDictionary().jsonString, "{}", "")
+        var dictionary: JSONDictionary = [:]
+        XCTAssertEqual(dictionary.jsonString!, "{}", "")
         XCTAssertFalse("{}".jsonObject == nil, "")
     }
     
@@ -88,7 +122,7 @@ class JSONTests: XCTestCase {
         // Bool <-> value
         container = []
         container.append(true)
-        XCTAssertEqual(container.jsonString, "[true]", "")
+        XCTAssertEqual(container.jsonString!, "[true]", "")
         
         var convertedBool: Bool = ("[true]".jsonObject as? JSONArray)?.first as Bool
         XCTAssertEqual(convertedBool, true, "")
@@ -96,7 +130,7 @@ class JSONTests: XCTestCase {
         // Double <-> number
         container = []
         container.append(4.5)
-        XCTAssertEqual(container.jsonString, "[4.5]", "")
+        XCTAssertEqual(container.jsonString!, "[4.5]", "")
         
         var convertedDouble: Double = ("[4.5]".jsonObject as? JSONArray)?.first as Double
         XCTAssertEqual(convertedDouble, 4.5, "")
@@ -104,7 +138,7 @@ class JSONTests: XCTestCase {
         // String <-> string
         container = []
         container.append("hello world")
-        XCTAssertEqual(container.jsonString, "[\"hello world\"]", "")
+        XCTAssertEqual(container.jsonString!, "[\"hello world\"]", "")
         
         var convertedString: String = ("[\"hello world\"]".jsonObject as? JSONArray)?.first as String
         XCTAssertEqual(convertedString, "hello world", "")
@@ -112,14 +146,14 @@ class JSONTests: XCTestCase {
         // Null <-> value
         container = []
         container.append(null)
-        XCTAssertEqual(container.jsonString, "[null]", "")
+        XCTAssertEqual(container.jsonString!, "[null]", "")
         
         var convertedNull: Null = ("[null]".jsonObject as? JSONArray)?.first as Null
         XCTAssertEqual(convertedNull, null, "")
     }
     
     func testNestibility() {
-        var structure = [
+        var structure: JSONDictionary = [
             "menu": [
                 "id": "file",
                 "value": "File",
@@ -140,9 +174,30 @@ class JSONTests: XCTestCase {
                     ] as JSONArray
                 ] as JSONDictionary
             ] as JSONDictionary
-        ] as JSONDictionary
+        ]
         
         var expectedJSON = "{\"menu\":{\"id\":\"file\",\"value\":\"File\",\"popup\":{\"menuitem\":[{\"value\":\"New\",\"onclick\":\"CreateNewDoc()\"},{\"value\":\"Open\",\"onclick\":\"OpenDoc()\"},{\"value\":\"Close\",\"onclick\":\"CloseDoc()\"}]}}}"
-        XCTAssertEqual(structure.jsonString.length, expectedJSON.length, "\(structure.jsonString)")
+        XCTAssertEqual(structure.jsonString!.length, expectedJSON.length, "\(structure.jsonString)")
+    }
+}
+
+class VerionTests: XCTestCase {
+    func testEquality() {
+        var v1: Version = "0.1.0"
+        var v2: Version = "0.1.0"
+        XCTAssertEqual(v1, v2, "")
+    }
+    
+    func testComparability() {
+        var v1: Version = "0.1.0"
+        var v2: Version = "0.1.1"
+        XCTAssertTrue(v2 > v1, "")
+    }
+    
+    func testDifferences() {
+        var v1: Version = "5.4.9"
+        var v2: Version = "6.3.2"
+        
+        XCTAssertEqual(v2 - v1, ("1.1.x" as Version), "")
     }
 }

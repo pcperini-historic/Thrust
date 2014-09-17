@@ -8,11 +8,11 @@
 
 import Foundation
 
-// MARK: Random Numbers
+// MARK: Random Primitives
 extension Int {
     // MARK: Class Accessors
     static func random() -> Int {
-        return Int(arc4random())
+        return self.random(Int.min ..< Int.max)
     }
     
     static func random(r: Range<Int>) -> Int {
@@ -25,24 +25,43 @@ extension Double {
     static func random() -> Double {
         return Double(Int.random(0 ... 100)) / 100.0
     }
+    
+    static func normalized(sigma: Double, mean: Double) -> Double {
+        return sqrt(-2.0 * log(Double.random())) * cos(2.0 * M_PI * Double.random()) * sigma + mean
+    }
+}
+
+extension String {
+    // MARK: Class Accessors
+    static func random(length: Int? = nil) -> String {
+        let alphabet: String = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+        
+        var string: String = ""
+        for _ in 0 ..< (length ?? Int.random()) {
+            let character: String = alphabet[Int.random(0 ..< alphabet.length)]
+            string += character
+        }
+        
+        return string
+    }
 }
 
 // MARK: Random Selections
-protocol Random: CollectionType {
+protocol Random {
     typealias ValueType
     
     // MARK: Accessors
+    /// Returns a random value from the collection.
     var any: ValueType? { get }
     
     // MARK: Mutators
+    /// Randomizes the values' positions in the collection.
     mutating func shuffle()
 }
 
 extension Array: Random {
-    typealias ValueType = T
-    
-    // MARK: Accessors
-    var any: ValueType? {
+    // MARK: Properties
+    var any: T? {
         return (self.count == 0) ? nil : self[Int.random(0 ..< self.count)]
     }
 
@@ -51,6 +70,45 @@ extension Array: Random {
         for var i = self.count - 1; i > 0; i-- {
             let j = Int.random(0 ..< i)
             swap(&self[i], &self[j])
+        }
+    }
+}
+
+extension Dictionary: Random {
+    // MARK: Properties
+    var any: Key? {
+        return self.keys.array.any
+    }
+    
+    // MARK: Mutators
+    mutating func shuffle() {
+        // Since order is not guaranteed,
+        // do nothing.
+    }
+}
+
+extension Dictionary {
+    // MARK: Accessors
+    /// From a [Key: Int] dictionary, returns a random Key, weighted by the key's value.
+    var anyByWeight: Key? {
+        get {
+            let keys: [Key] = self.keys.array
+            var weightedIndices: [Int] = []
+            
+            for (index, key) in enumerate(keys) {
+                var value: Value? = self[key]
+                if let count = value as? Int {
+                    for _ in 0 ..< count {
+                        weightedIndices.append(index)
+                    }
+                }
+            }
+            
+            if let weightedIndex = weightedIndices.any {
+                return keys[weightedIndex]
+            } else {
+                return nil
+            }
         }
     }
 }

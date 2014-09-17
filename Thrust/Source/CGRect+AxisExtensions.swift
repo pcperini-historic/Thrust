@@ -11,10 +11,10 @@ import UIKit
 
 enum CGRectAxis {
     // MARK: Cases
-    case NeitherAxis
     case XAxis
     case YAxis
     case BothAxes
+    case NeitherAxis
     
     // MARK: Converters
     init(edge: CGRectEdge) {

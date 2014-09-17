@@ -8,7 +8,6 @@
 
 import Foundation
 
-// MARK: - Queues
 class Queue {
     // MARK: Singletons
     private struct singletons {
@@ -16,10 +15,12 @@ class Queue {
         static let backgroundQueue: Queue = Queue(dispatchQueue: dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0))
     }
     
+    /// A queue representing the main queue.
     class var main: Queue {
         return singletons.mainQueue
     }
     
+    /// A queue representing the default background queue.
     class var background: Queue {
         return singletons.backgroundQueue
     }
@@ -38,16 +39,33 @@ class Queue {
     }
 
     // MARK: Accessors
+    /// Returns the label for this queue.
     var label: String? {
         return String.fromCString(dispatch_queue_get_label(self.dispatchQueue))
     }
 }
 
 // MARK: - Functions
+/**
+
+Executes the given block on the given queue.
+
+:param: queue The queue on which to execute the given block
+:param: block A block of code.
+
+*/
 func on(queue: Queue, block: () -> Void) {
     dispatch_async(queue.dispatchQueue, block)
 }
 
+/**
+
+Executes the given block on the given queue.
+
+:param: queue The queue on which to execute the given block
+:param: block A block of code.
+
+*/
 func on(queue: Queue, block: () -> Any) {
     on(queue) {block(); return}
 }

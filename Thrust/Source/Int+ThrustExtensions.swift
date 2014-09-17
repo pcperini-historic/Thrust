@@ -8,6 +8,7 @@
 
 import Foundation
 
+// MARK: Operators
 func **(lhs: Int, rhs: Int) -> Int {
     return Int(Double(lhs) ** Double(rhs))
 }

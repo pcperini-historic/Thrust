@@ -9,8 +9,8 @@
 import Foundation
 
 struct Regex {
-    
     // MARK: Types
+    /// A capture group is equivalent to a single string.
     typealias CaptureGroup = String
     
     // MARK: Properties
@@ -29,18 +29,50 @@ struct Regex {
     }
     
     // MARK: Accessors
+    /**
+    
+    Returns whether the given string matches this regex.
+    
+    :param: string The string to match.
+    :param: options NSMatchingOptions used to match the given string.
+    
+    :returns: true if the string matches the regex exactly, false otherwise.
+    
+    */
     func doesMatch(string: String, options: NSMatchingOptions = nil) -> Bool {
         return (self.regularExpression.numberOfMatchesInString(string,
             options: options,
             range: NSMakeRange(0, string.length)) == 1)
     }
     
+    /**
+    
+    Returns whether any substring within the given string matches this regex.
+    
+    :param: string The string to query.
+    :param: options NSMatchingOptions used to query the given string.
+    
+    :returns: true if any substring within the string matches the regex, false otherwise.
+    
+    */
     func hasMatch(string: String, options: NSMatchingOptions = nil) -> Bool {
         return (self.regularExpression.numberOfMatchesInString(string,
             options: options,
             range: NSMakeRange(0, string.length)) >= 1)
     }
     
+    /**
+    
+    Returns all matched capture groups in the given string.
+    
+    :example: "(\w+)-(\w+)".matchedCaptureGroups("lo-rem ips-um do-lor") == [["lo", "rem"], ["ips", "um"], ["do", "lor"]]
+    
+    :param: string The string to match.
+    :param: options NSMatchingOptions used to match the given string.
+    
+    :returns: An array of arrays of CaptureGroups, corresponding to each capture group within each match.
+    
+    */
     func matchedCaptureGroups(string: String, options: NSMatchingOptions = nil) -> [[CaptureGroup]] {
         
         var matches: [[CaptureGroup]] = [[]]
@@ -59,6 +91,7 @@ struct Regex {
     }
 }
 
+/// Allows the creation of Regexes from string literals.
 extension Regex: StringLiteralConvertible {
     
     // MARK: Types

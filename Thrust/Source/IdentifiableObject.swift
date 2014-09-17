@@ -12,6 +12,7 @@ func ==(lhs: IdentifiableObject, rhs: IdentifiableObject) -> Bool {
     return lhs.identifier == rhs.identifier
 }
 
+/// An object that retains a universally unique identifier.
 class IdentifiableObject: Hashable {
     // MARK: - Properties
     private var uuid: String

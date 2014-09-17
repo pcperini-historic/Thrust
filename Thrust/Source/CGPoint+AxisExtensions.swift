@@ -10,7 +10,6 @@ import Foundation
 import UIKit
 
 extension CGPoint {
-    
     // MARK: Accessors
     func inlineWithPoint(point: CGPoint, alongAxis axis: CGRectAxis) -> Bool {
         switch axis {

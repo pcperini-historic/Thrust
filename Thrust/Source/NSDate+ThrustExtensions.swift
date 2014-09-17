@@ -18,10 +18,12 @@ func >(lhs: NSDate, rhs: NSDate) -> Bool {
 }
 
 // MARK: Date + Time Interval = Date
+/// Returns a date by adding the given time intervalue to the given date.
 func +(lhs: NSDate, rhs: NSTimeInterval) -> NSDate {
     return lhs.dateByAddingTimeInterval(rhs)
 }
 
+/// Returns a date by subtracting the given time intervalue to the given date.
 func -(lhs: NSDate, rhs: NSTimeInterval) -> NSDate {
     return lhs + -rhs
 }
@@ -35,12 +37,22 @@ func -=(inout lhs: NSDate, rhs: NSTimeInterval) {
 }
 
 // MARK: Date + Date = Time Interval
+/// Returns the time-interval difference between two dates.
 func -(lhs: NSDate, rhs: NSDate) -> NSTimeInterval {
     return lhs.timeIntervalSinceDate(rhs)
 }
 
 extension NSDate {
     // MARK: Accessors
+    /**
+    
+    Returns the date components requested in the given calendar units.
+    
+    :param: calendarUnits An or-bound set of NSCalendarUnits representing which date components to return.
+    
+    :returns: The date components requested in the given calendar units.
+    
+    */
     func components(calendarUnits: NSCalendarUnit) -> NSDateComponents {
         return NSCalendar.currentCalendar().components(calendarUnits, fromDate: self)
     }
