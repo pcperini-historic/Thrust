@@ -2,6 +2,6 @@
 Thrust
 =======
 
-# Necessary for Flight # 
+## Necessary for Flight ##
 
 _(A work in progress.)_
