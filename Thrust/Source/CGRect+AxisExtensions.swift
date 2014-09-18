@@ -9,24 +9,48 @@
 import Foundation
 import UIKit
 
-enum CGRectAxis {
-    // MARK: Cases
-    case XAxis
-    case YAxis
-    case BothAxes
-    case NeitherAxis
+struct CGRectAxis: RawOptionSetType {
     
-    // MARK: Converters
-    init(edge: CGRectEdge) {
-        switch edge {
-        case CGRectEdge.MinXEdge, CGRectEdge.MaxXEdge:
-            self = XAxis
-            
-        case CGRectEdge.MinYEdge, CGRectEdge.MaxYEdge:
-            self = YAxis
-            
-        default:
-            self = NeitherAxis
-        }
+    // MARK: Values
+    static var NeitherAxis: CGRectAxis {
+        return self(0)
+    }
+    
+    static var XAxis: CGRectAxis {
+        return self(0b0001)
+    }
+    
+    static var YAxis: CGRectAxis {
+        return self(0b0010)
+    }
+    
+    // MARK: Properties
+    private var value: UInt = 0
+    
+    // MARK: Initializers
+    init(_ value: UInt) {
+        self.value = value
+    }
+    
+    static func fromMask(raw: UInt) -> CGRectAxis {
+        return self(raw)
+    }
+    
+    static func fromRaw(raw: UInt) -> CGRectAxis? {
+        return self(raw)
+    }
+    
+    static func convertFromNilLiteral() -> CGRectAxis {
+        return self(0)
+    }
+    
+    // MARK: Class Properties
+    static var allZeros: CGRectAxis {
+        return self(0)
+    }
+    
+    // MARK: Accessors
+    func toRaw() -> UInt {
+        return self.value
     }
 }

@@ -12,7 +12,7 @@
 		73178D9E19C52F7300D7E61E /* Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73178D9D19C52F7300D7E61E /* Version.swift */; };
 		73178D9F19C52F7300D7E61E /* Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73178D9D19C52F7300D7E61E /* Version.swift */; };
 		734DE25119B7D3BC00080597 /* FlowControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734DE24E19B7D3BC00080597 /* FlowControl.swift */; };
-		734DE25219B7D3BC00080597 /* Bounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734DE24F19B7D3BC00080597 /* Bounds.swift */; };
+		734DE25219B7D3BC00080597 /* Clamping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734DE24F19B7D3BC00080597 /* Clamping.swift */; };
 		734DE25319B7D3BC00080597 /* Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734DE25019B7D3BC00080597 /* Random.swift */; };
 		734DE25619B7D3C500080597 /* Array+ThrustExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734DE25419B7D3C500080597 /* Array+ThrustExtensions.swift */; };
 		734DE25719B7D3C500080597 /* Dictionary+ThrustExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734DE25519B7D3C500080597 /* Dictionary+ThrustExtensions.swift */; };
@@ -40,7 +40,7 @@
 		73C6A3F1197EA608005318D9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 73C6A3F0197EA608005318D9 /* Images.xcassets */; };
 		73C6A3FD197EA608005318D9 /* ThrustTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C6A3FC197EA608005318D9 /* ThrustTests.swift */; };
 		73F6E30919BA8DA8003BAD2C /* FlowControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734DE24E19B7D3BC00080597 /* FlowControl.swift */; };
-		73F6E30A19BA8DA8003BAD2C /* Bounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734DE24F19B7D3BC00080597 /* Bounds.swift */; };
+		73F6E30A19BA8DA8003BAD2C /* Clamping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734DE24F19B7D3BC00080597 /* Clamping.swift */; };
 		73F6E30B19BA8DA8003BAD2C /* Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734DE25019B7D3BC00080597 /* Random.swift */; };
 		73F6E30C19BA8DAB003BAD2C /* Array+ThrustExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734DE25419B7D3C500080597 /* Array+ThrustExtensions.swift */; };
 		73F6E30D19BA8DAB003BAD2C /* Dictionary+ThrustExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734DE25519B7D3C500080597 /* Dictionary+ThrustExtensions.swift */; };
@@ -76,7 +76,7 @@
 		73178D9719C5277500D7E61E /* Range+ThrustExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Range+ThrustExtensions.swift"; path = "Source/Range+ThrustExtensions.swift"; sourceTree = "<group>"; };
 		73178D9D19C52F7300D7E61E /* Version.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Version.swift; path = Source/Version.swift; sourceTree = "<group>"; };
 		734DE24E19B7D3BC00080597 /* FlowControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FlowControl.swift; path = Source/FlowControl.swift; sourceTree = "<group>"; };
-		734DE24F19B7D3BC00080597 /* Bounds.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Bounds.swift; path = Source/Bounds.swift; sourceTree = "<group>"; };
+		734DE24F19B7D3BC00080597 /* Clamping.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Clamping.swift; path = Source/Clamping.swift; sourceTree = "<group>"; };
 		734DE25019B7D3BC00080597 /* Random.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Random.swift; path = Source/Random.swift; sourceTree = "<group>"; };
 		734DE25419B7D3C500080597 /* Array+ThrustExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Array+ThrustExtensions.swift"; path = "Source/Array+ThrustExtensions.swift"; sourceTree = "<group>"; };
 		734DE25519B7D3C500080597 /* Dictionary+ThrustExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Dictionary+ThrustExtensions.swift"; path = "Source/Dictionary+ThrustExtensions.swift"; sourceTree = "<group>"; };
@@ -200,7 +200,7 @@
 				73A8A615197F4DB3000F8FED /* Extensions */,
 				73151CB2197F68B00073E2FA /* Classes */,
 				734DE24E19B7D3BC00080597 /* FlowControl.swift */,
-				734DE24F19B7D3BC00080597 /* Bounds.swift */,
+				734DE24F19B7D3BC00080597 /* Clamping.swift */,
 				734DE25019B7D3BC00080597 /* Random.swift */,
 			);
 			name = Source;
@@ -376,7 +376,7 @@
 				739852D419C878B9004DF46B /* UIBezierPath+ThrustExtensions.swift in Sources */,
 				734DE27019B7D3F500080597 /* HTTP.swift in Sources */,
 				734DE25719B7D3C500080597 /* Dictionary+ThrustExtensions.swift in Sources */,
-				734DE25219B7D3BC00080597 /* Bounds.swift in Sources */,
+				734DE25219B7D3BC00080597 /* Clamping.swift in Sources */,
 				734DE25A19B7D3CE00080597 /* Double+ThrustExtensions.swift in Sources */,
 				73178D9819C5277500D7E61E /* Range+ThrustExtensions.swift in Sources */,
 				73F88B7B19C637DA00D01778 /* UIView+AnimationExtensions.swift in Sources */,
@@ -423,7 +423,7 @@
 				73F6E31219BA8DAE003BAD2C /* NSURL+ThrustExtensions.swift in Sources */,
 				73F6E31119BA8DAE003BAD2C /* NSDate+ThrustExtensions.swift in Sources */,
 				73F6E30F19BA8DAE003BAD2C /* Int+ThrustExtensions.swift in Sources */,
-				73F6E30A19BA8DA8003BAD2C /* Bounds.swift in Sources */,
+				73F6E30A19BA8DA8003BAD2C /* Clamping.swift in Sources */,
 				73F6E30919BA8DA8003BAD2C /* FlowControl.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

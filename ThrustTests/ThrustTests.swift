@@ -20,14 +20,6 @@ class ThrustArrayTests: XCTestCase {
         XCTAssertEqual(x, ["b"], "")
     }
     
-    func testArrayEmptiness() {
-        var x: [String] = []
-        var y: [String] = ["a"]
-        
-        XCTAssertTrue(x.isEmpty, "")
-        XCTAssertFalse(y.isEmpty, "")
-    }
-    
     func testArrayIndexAccess() {
         var x = ["a", "b", "c'"]
         
@@ -60,22 +52,9 @@ class ThrustDictionaryTests: XCTestCase {
         x -= y
         XCTAssertEqual(x, ["c": "d"], "")
     }
-    
-    func testDictionaryEmptiness() {
-        var x: [String: String] = [:]
-        var y: [String: String] = ["a": "b"]
-        
-        XCTAssertTrue(x.isEmpty, "")
-        XCTAssertFalse(y.isEmpty, "")
-    }
 }
 
-class ThrustRangeTests: XCTestCase {
-    func testRangeEmptiness() {
-        var r = 0 ..< 10
-        XCTAssertFalse(r.isEmpty, "")
-    }
-    
+class ThrustRangeTests: XCTestCase {    
     func testRangeAll() {
         var r = 0 ..< 5
         XCTAssertEqual(r.all, [0, 1, 2, 3, 4], "")
@@ -120,32 +99,28 @@ class JSONTests: XCTestCase {
         var container: JSONArray
         
         // Bool <-> value
-        container = []
-        container.append(true)
+        container = [true]
         XCTAssertEqual(container.jsonString!, "[true]", "")
         
         var convertedBool: Bool = ("[true]".jsonObject as? JSONArray)?.first as Bool
         XCTAssertEqual(convertedBool, true, "")
         
         // Double <-> number
-        container = []
-        container.append(4.5)
+        container = [4.5]
         XCTAssertEqual(container.jsonString!, "[4.5]", "")
         
         var convertedDouble: Double = ("[4.5]".jsonObject as? JSONArray)?.first as Double
         XCTAssertEqual(convertedDouble, 4.5, "")
         
         // String <-> string
-        container = []
-        container.append("hello world")
+        container = ["hello world"]
         XCTAssertEqual(container.jsonString!, "[\"hello world\"]", "")
         
         var convertedString: String = ("[\"hello world\"]".jsonObject as? JSONArray)?.first as String
         XCTAssertEqual(convertedString, "hello world", "")
         
         // Null <-> value
-        container = []
-        container.append(null)
+        container = [null]
         XCTAssertEqual(container.jsonString!, "[null]", "")
         
         var convertedNull: Null = ("[null]".jsonObject as? JSONArray)?.first as Null
@@ -153,7 +128,7 @@ class JSONTests: XCTestCase {
     }
     
     func testNestibility() {
-        var structure: JSONDictionary = [
+        var structure = [
             "menu": [
                 "id": "file",
                 "value": "File",
@@ -174,9 +149,9 @@ class JSONTests: XCTestCase {
                     ] as JSONArray
                 ] as JSONDictionary
             ] as JSONDictionary
-        ]
+        ] as JSONDictionary
         
-        var expectedJSON = "{\"menu\":{\"id\":\"file\",\"value\":\"File\",\"popup\":{\"menuitem\":[{\"value\":\"New\",\"onclick\":\"CreateNewDoc()\"},{\"value\":\"Open\",\"onclick\":\"OpenDoc()\"},{\"value\":\"Close\",\"onclick\":\"CloseDoc()\"}]}}}"
+        let expectedJSON = "{\"menu\":{\"id\":\"file\",\"value\":\"File\",\"popup\":{\"menuitem\":[{\"value\":\"New\",\"onclick\":\"CreateNewDoc()\"},{\"value\":\"Open\",\"onclick\":\"OpenDoc()\"},{\"value\":\"Close\",\"onclick\":\"CloseDoc()\"}]}}}"
         XCTAssertEqual(structure.jsonString!.length, expectedJSON.length, "\(structure.jsonString)")
     }
 }

@@ -8,9 +8,30 @@
 
 import Foundation
 
+// MARK: - Functions
+/**
+
+Returns the index of the given value in the sequence.
+
+:param: seq A sequence of equatable values.
+:param: obj An Equatable value.
+
+:returns: The index of the given value, or nil if the value is not found.
+
+*/
+func indexOf<S: SequenceType where S.Generator.Element: Equatable>(seq: S, obj: S.Generator.Element) -> Int? {
+    for (index, anObject) in enumerate(seq) {
+        if (anObject as S.Generator.Element) == (obj as S.Generator.Element) {
+            return index
+        }
+    }
+    
+    return nil
+}
+
 // MARK: - Operators
 /// Removes the any objects in the right-hand array from the left-hand array.
-func -=<ValueType: Equatable>(inout lhs: [ValueType], rhs: [ValueType]) {
+func -=<T: Equatable>(inout lhs: [T], rhs: [T]) {
     lhs = lhs.filter({ !rhs.contains($0) })
 }
 
@@ -25,9 +46,9 @@ extension Array {
     :returns: The index of the given value, or nil if the value is not found.
     
      */
-    func index<ValueType: Equatable>(obj: ValueType) -> Int? {
+    func index<T: Equatable>(obj: T) -> Int? {
         for (index, anObject) in enumerate(self) {
-            if (anObject as ValueType) == (obj as ValueType) {
+            if (anObject as T) == (obj as T) {
                 return index
             }
         }
@@ -44,7 +65,7 @@ extension Array {
     :returns: true if the value is contained in the array, false otherwise.
     
     */
-    func contains<ValueType: Equatable>(obj: ValueType) -> Bool {
+    func contains<T: Equatable>(obj: T) -> Bool {
         return self.index(obj) != nil
     }
 
@@ -56,8 +77,8 @@ extension Array {
     :param: obj An Equatable value.
     
     */
-    mutating func remove<ValueType: Equatable>(obj: ValueType) {
-        self = self.filter({ ($0 as ValueType) != (obj as ValueType) })
+    mutating func remove<T: Equatable>(obj: T) {
+        self = self.filter({ ($0 as T) != (obj as T) })
     }
     
     /**

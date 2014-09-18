@@ -11,17 +11,20 @@ import UIKit
 
 extension CGPoint {
     // MARK: Accessors
-    func inlineWithPoint(point: CGPoint, alongAxis axis: CGRectAxis) -> Bool {
+    func inLineWithPoint(point: CGPoint, alongAxis axis: CGRectAxis) -> Bool {
         switch axis {
+        case CGRectAxis.NeitherAxis:
+            return (self.x != point.x) && (self.y != point.y)
+        case CGRectAxis.XAxis & CGRectAxis.YAxis:
+            return (self.x == point.x) && (self.y == point.y)
+            
         case CGRectAxis.XAxis:
             return self.x == point.x
         case CGRectAxis.YAxis:
             return self.y == point.y
-        
-        case CGRectAxis.NeitherAxis:
-            return (self.x != point.x) && (self.y != point.y)
-        case CGRectAxis.BothAxes:
-            return (self.x == point.x) && (self.y == point.y)
+            
+        default:
+            return false
         }
     }
 }

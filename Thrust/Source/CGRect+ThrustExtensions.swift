@@ -54,6 +54,6 @@ extension CGRect {
     }
     
     func pointIsCentered(point: CGPoint, alongAxis axis: CGRectAxis) -> Bool {
-        return point.inlineWithPoint(self.center, alongAxis: axis)
+        return point.inLineWithPoint(self.center, alongAxis: axis)
     }
 }
