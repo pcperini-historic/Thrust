@@ -39,6 +39,10 @@
 		73C6A3EF197EA608005318D9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C6A3EE197EA608005318D9 /* AppDelegate.swift */; };
 		73C6A3F1197EA608005318D9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 73C6A3F0197EA608005318D9 /* Images.xcassets */; };
 		73C6A3FD197EA608005318D9 /* ThrustTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C6A3FC197EA608005318D9 /* ThrustTests.swift */; };
+		73D08AEF19CD284200B7614A /* UIView+InterfaceBuilderExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D08AEE19CD284200B7614A /* UIView+InterfaceBuilderExtensions.swift */; };
+		73D08AF019CD284200B7614A /* UIView+InterfaceBuilderExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D08AEE19CD284200B7614A /* UIView+InterfaceBuilderExtensions.swift */; };
+		73D08AF519CD28E000B7614A /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73D08AF419CD28E000B7614A /* Storyboard.storyboard */; };
+		73D08AF619CD28E000B7614A /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73D08AF419CD28E000B7614A /* Storyboard.storyboard */; };
 		73F6E30919BA8DA8003BAD2C /* FlowControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734DE24E19B7D3BC00080597 /* FlowControl.swift */; };
 		73F6E30A19BA8DA8003BAD2C /* Clamping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734DE24F19B7D3BC00080597 /* Clamping.swift */; };
 		73F6E30B19BA8DA8003BAD2C /* Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734DE25019B7D3BC00080597 /* Random.swift */; };
@@ -105,6 +109,8 @@
 		73C6A3FB197EA608005318D9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		73C6A3FC197EA608005318D9 /* ThrustTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThrustTests.swift; sourceTree = "<group>"; };
 		73C6A406197EA60E005318D9 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		73D08AEE19CD284200B7614A /* UIView+InterfaceBuilderExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIView+InterfaceBuilderExtensions.swift"; path = "Source/UIView+InterfaceBuilderExtensions.swift"; sourceTree = "<group>"; };
+		73D08AF419CD28E000B7614A /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
 		73F88B7A19C637DA00D01778 /* UIView+AnimationExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIView+AnimationExtensions.swift"; path = "Source/UIView+AnimationExtensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -230,6 +236,7 @@
 			children = (
 				73A8A616197F4DC6000F8FED /* Source */,
 				73C6A3EE197EA608005318D9 /* AppDelegate.swift */,
+				73D08AF419CD28E000B7614A /* Storyboard.storyboard */,
 				73C6A3F0197EA608005318D9 /* Images.xcassets */,
 				73C6A3EC197EA608005318D9 /* Supporting Files */,
 			);
@@ -265,6 +272,7 @@
 			isa = PBXGroup;
 			children = (
 				73F88B7A19C637DA00D01778 /* UIView+AnimationExtensions.swift */,
+				73D08AEE19CD284200B7614A /* UIView+InterfaceBuilderExtensions.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -349,6 +357,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				73C6A3F1197EA608005318D9 /* Images.xcassets in Resources */,
+				73D08AF519CD28E000B7614A /* Storyboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -356,6 +365,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				73D08AF619CD28E000B7614A /* Storyboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -381,6 +391,7 @@
 				73178D9819C5277500D7E61E /* Range+ThrustExtensions.swift in Sources */,
 				73F88B7B19C637DA00D01778 /* UIView+AnimationExtensions.swift in Sources */,
 				73856B6919BE35B50059E8A9 /* JSONDictionary.swift in Sources */,
+				73D08AEF19CD284200B7614A /* UIView+InterfaceBuilderExtensions.swift in Sources */,
 				73178D9E19C52F7300D7E61E /* Version.swift in Sources */,
 				73C6A3EF197EA608005318D9 /* AppDelegate.swift in Sources */,
 				734DE26219B7D3DC00080597 /* NSURL+ThrustExtensions.swift in Sources */,
@@ -414,6 +425,7 @@
 				73F6E30D19BA8DAB003BAD2C /* Dictionary+ThrustExtensions.swift in Sources */,
 				73F88B7C19C637DA00D01778 /* UIView+AnimationExtensions.swift in Sources */,
 				73856B6A19BE3A9A0059E8A9 /* JSONDictionary.swift in Sources */,
+				73D08AF019CD284200B7614A /* UIView+InterfaceBuilderExtensions.swift in Sources */,
 				73178D9F19C52F7300D7E61E /* Version.swift in Sources */,
 				73F6E31619BA8DB0003BAD2C /* CGRect+ThrustExtensions.swift in Sources */,
 				73F6E31419BA8DB0003BAD2C /* CGPoint+AxisExtensions.swift in Sources */,

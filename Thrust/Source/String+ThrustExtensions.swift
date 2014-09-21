@@ -29,16 +29,17 @@ func *=(inout lhs: String, rhs: Int) {
 
 extension String {
     // MARK: Properties
-    /// UTF16-length of the string.
+    /// UTF16-length of the string. Grapheme-decomposed.
     var length: Int {
         return self.lengthOfBytesUsingEncoding(NSUTF16StringEncoding)
     }
     
+    /// UTF16-encoded array of C characters. Grapheme-decomposed.
     var cString: [CChar]? {
         return self.cStringUsingEncoding(NSUTF16StringEncoding)
     }
     
-    /// UTF16-encoded data representation of the string.
+    /// UTF16-encoded data representation of the string. Grapheme-decomposed.
     var data: NSData? {
         return self.dataUsingEncoding(NSUTF16StringEncoding, allowLossyConversion: false)
     }

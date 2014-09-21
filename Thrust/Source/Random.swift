@@ -11,10 +11,12 @@ import Foundation
 // MARK: Random Primitives
 extension Int {
     // MARK: Class Accessors
+    /// Returns a uniformly-distributed random integer between Int.min and Int.max, inclusive.
     static func random() -> Int {
         return self.random(Int.min ..< Int.max)
     }
     
+    /// Returns a uniformly-distributed random integer in the given range.
     static func random(r: Range<Int>) -> Int {
         return Int(arc4random_uniform(UInt32(r.endIndex)) + UInt32(r.startIndex))
     }
@@ -22,23 +24,44 @@ extension Int {
 
 extension Double {
     // MARK: Class Accessors
+    /// Returns a uniformly-distributed random double between 0.0 and 1.0, inclusive.
     static func random() -> Double {
         return Double(Int.random(0 ... 100)) / 100.0
     }
     
-    static func normalized(sigma: Double, mean: Double) -> Double {
+    /**
+
+    Returns a normally-distributed random double.
+
+    :param: sigma The standard deviation sigma for the distribution.
+    :param: mean The average value for the distribution.
+    
+    :returns: A normally-distributed random double.
+    
+    */
+    static func normalized(#sigma: Double, mean: Double) -> Double {
         return sqrt(-2.0 * log(Double.random())) * cos(2.0 * M_PI * Double.random()) * sigma + mean
     }
 }
 
 extension String {
     // MARK: Class Accessors
-    static func random(length: Int? = nil) -> String {
-        let alphabet: String = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+    /**
+    
+    Returns a randomly-built string.
+    
+    :param: length The length of the random string. Defaults to a random integer.
+    :param: alphabet The alphabet from which to construct the string. Defaults to alphanumeric characters.
+    
+    :returns: A randomly-built string.
+    
+    */
+    static func random(length: Int? = nil, alphabet: String? = nil) -> String {
+        let chars: String = alphabet ?? "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
         
         var string: String = ""
         for _ in 0 ..< (length ?? Int.random()) {
-            let character: String = alphabet[Int.random(0 ..< alphabet.length)]
+            let character: String = chars[Int.random(0 ..< chars.length)]
             string += character
         }
         
@@ -55,7 +78,7 @@ protocol Random {
     var any: ValueType? { get }
     
     // MARK: Mutators
-    /// Randomizes the values' positions in the collection.
+    /// Randomizes the values' positions in the collection. Not guaranteed to be different across shuffles.
     mutating func shuffle()
 }
 
@@ -104,7 +127,7 @@ extension Dictionary {
                 }
             }
             
-            if let weightedIndex = weightedIndices.any {
+            if let weightedIndex: Int = weightedIndices.any {
                 return keys[weightedIndex]
             } else {
                 return nil

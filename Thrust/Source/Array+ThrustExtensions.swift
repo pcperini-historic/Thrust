@@ -19,7 +19,7 @@ Returns the index of the given value in the sequence.
 :returns: The index of the given value, or nil if the value is not found.
 
 */
-func indexOf<S: SequenceType where S.Generator.Element: Equatable>(seq: S, obj: S.Generator.Element) -> Int? {
+func index<S: SequenceType where S.Generator.Element: Equatable>(seq: S, obj: S.Generator.Element) -> Int? {
     for (index, anObject) in enumerate(seq) {
         if (anObject as S.Generator.Element) == (obj as S.Generator.Element) {
             return index
@@ -96,12 +96,21 @@ extension Array {
     }
     
     // MARK: Performers
+    /**
+    
+    Performs the block on each object in the array.
+    Inspired by Objective-C's -[NSArray makeObjectsPerformSelector:]
+    
+    :param: block A block that takes 1 argument: the value from this array.
+    
+    */
     func perform(block: (T) -> Void) {
         for obj in self {
             block(obj)
         }
     }
     
+    /// Overrides perform() to allow for Any-returning block.
     func perform(block: (T) -> Any) {
         self.perform({block($0); return})
     }

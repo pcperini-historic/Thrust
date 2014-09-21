@@ -7,6 +7,7 @@
 //
 
 import XCTest
+import UIKit
 import CoreGraphics
 
 // MARK: - Array
@@ -32,6 +33,18 @@ class ThrustArrayTests: XCTestCase {
         x.remove("b")
         
         XCTAssertEqual(x, ["a", "c"], "")
+    }
+    
+    func testArrayPerformers() {
+        var x = [UIView(), UIView(), UIView()]
+        
+        var results = x.map({ $0.hidden })
+        XCTAssertEqual(results, [false, false, false], "")
+        
+        x.perform({ $0.hidden = true })
+        
+        results = x.map({ $0.hidden })
+        XCTAssertEqual(results, [true, true, true], "")
     }
 }
 

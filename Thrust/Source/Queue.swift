@@ -58,14 +58,7 @@ func on(queue: Queue, block: () -> Void) {
     dispatch_async(queue.dispatchQueue, block)
 }
 
-/**
-
-Executes the given block on the given queue.
-
-:param: queue The queue on which to execute the given block
-:param: block A block of code.
-
-*/
+/// Overloads on() to allow for Any-returning block().
 func on(queue: Queue, block: () -> Any) {
     on(queue) {block(); return}
 }

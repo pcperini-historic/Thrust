@@ -34,7 +34,7 @@ extension UIView {
         }
     }
     
-    /// Overloads animate() to allow for Any-returning animations() and completion()
+    /// Overloads animate() to allow for Any-returning animations() and completion().
     class func animate(#duration: NSTimeInterval, delay: NSTimeInterval = 0, options: UIViewAnimationOptions = UIViewAnimationOptions.allZeros, animations: () -> Any, completion: ((finished: Bool) -> Any)? = nil) {
         UIView.animate(duration: duration,
             delay: delay,
@@ -43,7 +43,7 @@ extension UIView {
             completion: {completion?(finished: $0); return})
     }
     
-    /// Overloads animate() to allow for Any-returning completion()
+    /// Overloads animate() to allow for Any-returning completion().
     class func animate(#duration: NSTimeInterval, delay: NSTimeInterval = 0, options: UIViewAnimationOptions = UIViewAnimationOptions.allZeros, animations: () -> Void, completion: ((finished: Bool) -> Any)? = nil) {
         UIView.animate(duration: duration,
             delay: delay,
@@ -52,7 +52,7 @@ extension UIView {
             completion: {completion?(finished: $0); return})
     }
     
-    /// Overloads animate() to allow for Any-returning animations()
+    /// Overloads animate() to allow for Any-returning animations().
     class func animate(#duration: NSTimeInterval, delay: NSTimeInterval = 0, options: UIViewAnimationOptions = UIViewAnimationOptions.allZeros, animations: () -> Any, completion: ((finished: Bool) -> Void)? = nil) {
         UIView.animate(duration: duration,
             delay: delay,

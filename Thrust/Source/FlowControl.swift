@@ -22,7 +22,7 @@ func after(time: NSTimeInterval, block: () -> Void) {
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(time * Double(NSEC_PER_SEC))), dispatch_get_main_queue(), block)
 }
 
-/// Dispatches the given block for execution after the given time interval.
+/// Overloads after() to allow for Any-returning block().
 func after(time: NSTimeInterval, block: () -> Any) {
     after(time) {block(); return}
 }
