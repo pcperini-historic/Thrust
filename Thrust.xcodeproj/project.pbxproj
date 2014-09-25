@@ -103,7 +103,7 @@
 		734DE26D19B7D3F500080597 /* JSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JSON.swift; path = Source/JSON.swift; sourceTree = "<group>"; };
 		734DE26E19B7D3F500080597 /* Queue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Queue.swift; path = Source/Queue.swift; sourceTree = "<group>"; };
 		734DE26F19B7D3F500080597 /* Regex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Regex.swift; path = Source/Regex.swift; sourceTree = "<group>"; };
-		735DC2F619D4DEB300FEA051 /* thrust_logo.svg */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = thrust_logo.svg; sourceTree = "<group>"; };
+		735DC2F719D4DF7E00FEA051 /* thrust_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = thrust_logo.png; sourceTree = "<group>"; };
 		73817C7C19BE014900EF3CD5 /* JSONArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JSONArray.swift; path = Source/JSONArray.swift; sourceTree = "<group>"; };
 		73856B6819BE35B50059E8A9 /* JSONDictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JSONDictionary.swift; path = Source/JSONDictionary.swift; sourceTree = "<group>"; };
 		739852D319C878B9004DF46B /* UIBezierPath+ThrustExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIBezierPath+ThrustExtensions.swift"; path = "Source/UIBezierPath+ThrustExtensions.swift"; sourceTree = "<group>"; };
@@ -226,7 +226,7 @@
 		73C6A3E0197EA608005318D9 = {
 			isa = PBXGroup;
 			children = (
-				735DC2F619D4DEB300FEA051 /* thrust_logo.svg */,
+				735DC2F719D4DF7E00FEA051 /* thrust_logo.png */,
 				73C6A406197EA60E005318D9 /* README.md */,
 				73C6A3EB197EA608005318D9 /* Thrust */,
 				73C6A3F9197EA608005318D9 /* ThrustTests */,
