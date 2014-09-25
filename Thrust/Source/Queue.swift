@@ -8,22 +8,14 @@
 
 import Foundation
 
-class Queue {
-    // MARK: Singletons
-    private struct singletons {
-        static let mainQueue: Queue = Queue(dispatchQueue: dispatch_get_main_queue())
-        static let backgroundQueue: Queue = Queue(dispatchQueue: dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0))
-    }
+struct Queue {
     
+    // MARK: Singletons
     /// A queue representing the main queue.
-    class var main: Queue {
-        return singletons.mainQueue
-    }
+    static let main: Queue = Queue(dispatchQueue: dispatch_get_main_queue())
     
     /// A queue representing the default background queue.
-    class var background: Queue {
-        return singletons.backgroundQueue
-    }
+    static let background: Queue = Queue(dispatchQueue: dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0))
     
     // MARK: Properties
     private let dispatchQueue: dispatch_queue_t
@@ -33,7 +25,7 @@ class Queue {
         self.dispatchQueue = dispatchQueue
     }
     
-    convenience init(label: String) {
+    init(label: String) {
         let labelCString: [CChar] = label.cString ?? "".cString!
         self.init(dispatchQueue: dispatch_queue_create(labelCString, nil))
     }

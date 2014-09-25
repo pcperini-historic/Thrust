@@ -46,8 +46,8 @@
 		73D08AF619CD28E000B7614A /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73D08AF419CD28E000B7614A /* Storyboard.storyboard */; };
 		73E10D4019D1B6960092F1AB /* Distribution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E10D3F19D1B6960092F1AB /* Distribution.swift */; };
 		73E10D4119D1B6960092F1AB /* Distribution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E10D3F19D1B6960092F1AB /* Distribution.swift */; };
-		73EC641219D30F2A00FBA053 /* SequenceFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EC641119D30F2A00FBA053 /* SequenceFunctions.swift */; };
-		73EC641319D30F2A00FBA053 /* SequenceFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EC641119D30F2A00FBA053 /* SequenceFunctions.swift */; };
+		73EC641219D30F2A00FBA053 /* Sequencing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EC641119D30F2A00FBA053 /* Sequencing.swift */; };
+		73EC641319D30F2A00FBA053 /* Sequencing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EC641119D30F2A00FBA053 /* Sequencing.swift */; };
 		73F6E30919BA8DA8003BAD2C /* FlowControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734DE24E19B7D3BC00080597 /* FlowControl.swift */; };
 		73F6E30A19BA8DA8003BAD2C /* Clamping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734DE24F19B7D3BC00080597 /* Clamping.swift */; };
 		73F6E30B19BA8DA8003BAD2C /* Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734DE25019B7D3BC00080597 /* Random.swift */; };
@@ -118,7 +118,7 @@
 		73D08AEE19CD284200B7614A /* UIView+InterfaceBuilderExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIView+InterfaceBuilderExtensions.swift"; path = "Source/UIView+InterfaceBuilderExtensions.swift"; sourceTree = "<group>"; };
 		73D08AF419CD28E000B7614A /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
 		73E10D3F19D1B6960092F1AB /* Distribution.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Distribution.swift; path = Source/Distribution.swift; sourceTree = "<group>"; };
-		73EC641119D30F2A00FBA053 /* SequenceFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SequenceFunctions.swift; path = Source/SequenceFunctions.swift; sourceTree = "<group>"; };
+		73EC641119D30F2A00FBA053 /* Sequencing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Sequencing.swift; path = Source/Sequencing.swift; sourceTree = "<group>"; };
 		73F88B7A19C637DA00D01778 /* UIView+AnimationExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIView+AnimationExtensions.swift"; path = "Source/UIView+AnimationExtensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -217,7 +217,7 @@
 				734DE24E19B7D3BC00080597 /* FlowControl.swift */,
 				734DE24F19B7D3BC00080597 /* Clamping.swift */,
 				734DE25019B7D3BC00080597 /* Random.swift */,
-				73EC641119D30F2A00FBA053 /* SequenceFunctions.swift */,
+				73EC641119D30F2A00FBA053 /* Sequencing.swift */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -405,7 +405,7 @@
 				73856B6919BE35B50059E8A9 /* JSONDictionary.swift in Sources */,
 				73D08AEF19CD284200B7614A /* UIView+InterfaceBuilderExtensions.swift in Sources */,
 				73178D9E19C52F7300D7E61E /* Version.swift in Sources */,
-				73EC641219D30F2A00FBA053 /* SequenceFunctions.swift in Sources */,
+				73EC641219D30F2A00FBA053 /* Sequencing.swift in Sources */,
 				73C6A3EF197EA608005318D9 /* AppDelegate.swift in Sources */,
 				73C417ED19CF345900DB542A /* ViewController.swift in Sources */,
 				734DE26219B7D3DC00080597 /* NSURL+ThrustExtensions.swift in Sources */,
@@ -438,7 +438,7 @@
 				73F6E30C19BA8DAB003BAD2C /* Array+ThrustExtensions.swift in Sources */,
 				73F6E30D19BA8DAB003BAD2C /* Dictionary+ThrustExtensions.swift in Sources */,
 				73E10D4119D1B6960092F1AB /* Distribution.swift in Sources */,
-				73EC641319D30F2A00FBA053 /* SequenceFunctions.swift in Sources */,
+				73EC641319D30F2A00FBA053 /* Sequencing.swift in Sources */,
 				73F88B7C19C637DA00D01778 /* UIView+AnimationExtensions.swift in Sources */,
 				73856B6A19BE3A9A0059E8A9 /* JSONDictionary.swift in Sources */,
 				73D08AF019CD284200B7614A /* UIView+InterfaceBuilderExtensions.swift in Sources */,

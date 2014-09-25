@@ -1,5 +1,5 @@
 //
-//  SequenceFunctions.swift
+//  Sequencing.swift
 //  Thrust
 //
 //  Created by Patrick Perini on 9/24/14.
@@ -34,11 +34,7 @@ func min<S: SequenceType where S.Generator.Element: Comparable>(seq: S) -> S.Gen
 func comp<S: SequenceType, L: BooleanType>(seq: S, comp: (S.Generator.Element, S.Generator.Element) -> L) -> S.Generator.Element? {
     var compVal: S.Generator.Element? = nil
     for obj in seq {
-        if compVal == nil {
-            compVal = obj
-        } else {
-            compVal = (comp(obj, compVal!)) ? obj : compVal
-        }
+        compVal = (compVal == nil) ? obj : ((comp(obj, compVal!)) ? obj : compVal)
     }
     
     return compVal
