@@ -1,7 +1,3 @@
-=======
-Thrust
-=======
-
-__Necessary for Flight__
+![Thrust: Necessary for Flight]()
 
 _(A work in progress.)_
