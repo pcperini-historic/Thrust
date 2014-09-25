@@ -10,11 +10,17 @@ import Foundation
 
 extension NSData {
     // MARK: Properties
+    /// The hexlified string description.
     var hexlifiedDescription: String {
         get {
             var description: String = self.description
             description.replace(["<", ">", " "], with: "")
             return description
         }
+    }
+    
+    /// UTF16-length string representation. Grapheme-decomposed.
+    var string: String {
+        return NSString(data: self, encoding: NSUTF16StringEncoding)
     }
 }

@@ -8,27 +8,6 @@
 
 import Foundation
 
-// MARK: - Functions
-/**
-
-Returns the index of the given value in the sequence.
-
-:param: seq A sequence of equatable values.
-:param: obj An Equatable value.
-
-:returns: The index of the given value, or nil if the value is not found.
-
-*/
-func index<S: SequenceType where S.Generator.Element: Equatable>(seq: S, obj: S.Generator.Element) -> Int? {
-    for (index, anObject) in enumerate(seq) {
-        if (anObject as S.Generator.Element) == (obj as S.Generator.Element) {
-            return index
-        }
-    }
-    
-    return nil
-}
-
 // MARK: - Operators
 /// Removes the any objects in the right-hand array from the left-hand array.
 func -=<T: Equatable>(inout lhs: [T], rhs: [T]) {
@@ -52,7 +31,7 @@ extension Array {
                 return index
             }
         }
-        
+
         return nil
     }
     
@@ -110,7 +89,7 @@ extension Array {
         }
     }
     
-    /// Overrides perform() to allow for Any-returning block.
+    /// Overloads perform() to allow for Any-returning block().
     func perform(block: (T) -> Any) {
         self.perform({block($0); return})
     }

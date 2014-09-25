@@ -40,7 +40,7 @@ extension Double {
     
     */
     static func normalized(#sigma: Double, mean: Double) -> Double {
-        return sqrt(-2.0 * log(Double.random())) * cos(2.0 * M_PI * Double.random()) * sigma + mean
+        return sqrt(-2.0 * log(Double.random() + DBL_EPSILON)) * cos(2.0 * M_PI * Double.random()) * sigma + mean
     }
 }
 
