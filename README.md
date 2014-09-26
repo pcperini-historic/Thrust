@@ -27,9 +27,10 @@ Thrust is a multi-purpose library for Swift, used to make simple operations in t
 animate(duration: NSTimeInterval, animations: () -> Void)
 
 after(time: NSTimeInterval, block: () -> Void)
+on(queue: Queue, block: () -> Void)
 
 index(seq: Sequence, obj: Element) -> Int?
-comp(seq: Sequence, comp: (Element, Element) -> Bool)
+comp(seq: Sequence, comp: (Element, Element) -> Bool) -> Element?
 max(seq: Sequence) -> Element?
 min(seq: Sequence) -> Element?
 
@@ -147,6 +148,45 @@ String[Range<Int>] -> String
 ```
 
 ### Classes
+
+```swift
+class HTTP {
+    struct Response {
+        requestURL: NSURL
+        requestBody: NSData
+        status: Int?
+        data: NSData?
+        string: String?
+        object: JSONContainer?
+    }
+
+    struct RequestBatch {
+        requestCount: Int
+        addGETRequest(url: NSURL)
+        addPUTRequest(url: NSURL)
+        addPOSTRequest(url: NSURL)
+        addDELETERequest(url: NSURL)
+        performRequests(block: ([Response]) -> Void)
+    }
+
+    class get(url: NSURL, block: ((Response) -> Void)?)
+    class get(url: NSURL) -> Response
+    class put(url: NSURL, block: ((Response) -> Void)?)
+    class put(url: NSURL) -> Response
+    class post(url: NSURL, block: ((Response) -> Void)?)
+    class post(url: NSURL) -> Response
+    class delete(url: NSURL, block: ((Response) -> Void)?)
+    class delete(url: NSURL) -> Response
+}
+```
+
+```swift
+struct Queue {
+    static main: Queue
+    static background: Queue
+    label: String?
+}
+```
 
 ```swift
 struct Regex {

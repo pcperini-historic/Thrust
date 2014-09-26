@@ -130,49 +130,45 @@ class HTTP {
         }
         
         // MARK: Mutators
-        mutating func addGETRequest(url: NSURL, headers: [String: String]? = nil, params: [String: String]? = nil, block: ((Response) -> Void)?) {
+        mutating func addGETRequest(url: NSURL, headers: [String: String]? = nil, params: [String: String]? = nil) {
             self.addRequest(url,
                 method: Method.GET,
                 headers: headers,
                 params: params,
-                payload: nil,
-                block: block)
+                payload: nil)
         }
         
-        mutating func addPUTRequest(url: NSURL, headers: [String: String]? = nil, params: [String: String]? = nil, payload: JSONContainer?, block: ((Response) -> Void)?) {
+        mutating func addPUTRequest(url: NSURL, headers: [String: String]? = nil, params: [String: String]? = nil, payload: JSONContainer?) {
             self.addRequest(url,
                 method: Method.PUT,
                 headers: headers,
                 params: params,
-                payload: payload,
-                block: block)
+                payload: payload)
         }
         
-        mutating func addPOSTRequest(url: NSURL, headers: [String: String]? = nil, params: [String: String]? = nil, payload: JSONContainer?, block: ((Response) -> Void)?) {
+        mutating func addPOSTRequest(url: NSURL, headers: [String: String]? = nil, params: [String: String]? = nil, payload: JSONContainer?) {
             self.addRequest(url,
                 method: Method.POST,
                 headers: headers,
                 params: params,
-                payload: payload,
-                block: block)
+                payload: payload)
         }
         
-        mutating func addDELETERequest(url: NSURL, headers: [String: String]? = nil, params: [String: String]? = nil, block: ((Response) -> Void)?) {
+        mutating func addDELETERequest(url: NSURL, headers: [String: String]? = nil, params: [String: String]? = nil) {
             self.addRequest(url,
                 method: Method.DELETE,
                 headers: headers,
                 params: params,
-                payload: nil,
-                block: block)
+                payload: nil)
         }
 
-        private mutating func addRequest(url: NSURL, method: Method, headers: [String: String]? = nil, params: [String: String]? = nil, payload: JSONContainer?, block: ((Response) -> Void)?) {
+        private mutating func addRequest(url: NSURL, method: Method, headers: [String: String]? = nil, params: [String: String]? = nil, payload: JSONContainer?) {
             let request: Request = Request(url: url,
                 method: method,
                 headers: headers,
                 params: params,
                 payload: payload,
-                block: block)
+                block: nil)
             
             var requests: [Request] = self.requests
             requests.append(request)
