@@ -9,10 +9,6 @@
 import Foundation
 
 struct Regex {
-    // MARK: Types
-    /// A capture group is equivalent to a single string.
-    typealias CaptureGroup = String
-    
     // MARK: Properties
     private let regularExpression: NSRegularExpression
     private let errorPointer: NSErrorPointer
@@ -73,12 +69,12 @@ struct Regex {
     :returns: An array of arrays of CaptureGroups, corresponding to each capture group within each match.
     
     */
-    func matchedCaptureGroups(string: String, options: NSMatchingOptions = nil) -> [[CaptureGroup]] {
+    func matchedCaptureGroups(string: String, options: NSMatchingOptions = nil) -> [[String]] {
         
-        var matches: [[CaptureGroup]] = [[]]
+        var matches: [[String]] = [[]]
         for resultObject in self.regularExpression.matchesInString(string, options: options, range: NSMakeRange(0, string.length)) {
             if let result = resultObject as? NSTextCheckingResult {
-                var match: [CaptureGroup] = []
+                var match: [String] = []
                 for index in 0 ..< self.regularExpression.numberOfCaptureGroups {
                     let matchRange = result.rangeAtIndex(index + 1)
                     match.append(string[matchRange])

@@ -20,16 +20,6 @@ func index<S: SequenceType where S.Generator.Element: Equatable>(seq: S, obj: S.
     return nil
 }
 
-/// Returns the max value in the sequence.
-func max<S: SequenceType where S.Generator.Element: Comparable>(seq: S) -> S.Generator.Element? {
-    return comp(seq, { $0 > $1 })
-}
-
-/// Returns the min value in the sequence.
-func min<S: SequenceType where S.Generator.Element: Comparable>(seq: S) -> S.Generator.Element? {
-    return comp(seq, { $0 < $1 })
-}
-
 /// Returns the most `comp` value in the sequence.
 func comp<S: SequenceType, L: BooleanType>(seq: S, comp: (S.Generator.Element, S.Generator.Element) -> L) -> S.Generator.Element? {
     var compVal: S.Generator.Element? = nil
@@ -38,4 +28,14 @@ func comp<S: SequenceType, L: BooleanType>(seq: S, comp: (S.Generator.Element, S
     }
     
     return compVal
+}
+
+/// Returns the max value in the sequence.
+func max<S: SequenceType where S.Generator.Element: Comparable>(seq: S) -> S.Generator.Element? {
+    return comp(seq, { $0 > $1 })
+}
+
+/// Returns the min value in the sequence.
+func min<S: SequenceType where S.Generator.Element: Comparable>(seq: S) -> S.Generator.Element? {
+    return comp(seq, { $0 < $1 })
 }
